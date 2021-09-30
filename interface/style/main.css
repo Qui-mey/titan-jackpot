@@ -1,0 +1,49 @@
+@import url("./fonts.css");
+
+body,
+html {
+    font-family: 'Roboto Mono', monospace;
+    background-color: rgb(245, 220, 242);
+}
+
+input {
+    padding:5px;
+    border-width: 2px;
+    border-color: #000;
+
+    font-family: 'Roboto Mono', monospace;
+}
+
+button {
+    padding: 5px;
+    border-color: #000;
+    border-style: solid;
+    background-color: #fff;
+
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+#connection-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: none;
+    text-decoration: none;
+}
+
+status {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position:relative;
+    background-color: rgb(255, 148, 184);
+    border: 2px solid #000;
+    margin-right: 5px;
+}
+
+status.connected {
+    background-color: rgb(148, 255, 148);
+}
