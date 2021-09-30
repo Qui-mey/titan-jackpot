@@ -8,7 +8,8 @@ const Messages = {
 
 // Temp settings
 const Settings = {
-    eth_provider: "https://pcinic-api.glitch.me",
+    //eth_provider: "https://pcinic-api.glitch.me",
+    eth_provider:"https://titan-faucet.herokuapp.com",
     account_provider: "https://ipfs.3box.io"
 }
 
@@ -25,7 +26,7 @@ else if (window.web3) {
 // Non-DApp Browsers
 else {
     alert('You have to install MetaMask !');
-    document.getElementById("web3-connection").innerText = Messages.no_support_web3;
+    document.getElementById("connection-indicator").innerText = Messages.no_support_web3;
 }
 
 // ETH Test API (pcinic-api.glitch.me)
