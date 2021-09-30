@@ -1,16 +1,17 @@
 @import url("./fonts.css");
-
-body,
 html {
     font-family: 'Roboto Mono', monospace;
+}
+
+body {
+    margin: 20px;
     background-color: rgb(245, 220, 242);
 }
 
 input {
-    padding:5px;
+    padding: 5px;
     border-width: 2px;
     border-color: #000;
-
     font-family: 'Roboto Mono', monospace;
 }
 
@@ -19,14 +20,14 @@ button {
     border-color: #000;
     border-style: solid;
     background-color: #fff;
-
     font-family: 'Roboto Mono', monospace;
     text-transform: uppercase;
     font-weight: bolder;
     text-decoration: underline;
 }
 
-#connection-indicator {
+button#connection-indicator {
+    font-weight: normal;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,7 +39,7 @@ status {
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    position:relative;
+    position: relative;
     background-color: rgb(255, 148, 184);
     border: 2px solid #000;
     margin-right: 5px;
@@ -47,3 +48,131 @@ status {
 status.connected {
     background-color: rgb(148, 255, 148);
 }
+
+.main-container {
+    margin-top: 20px;
+    position: relative;
+    width: calc(100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Decals */
+
+.info-panel::before {
+    content: "";
+    height: 80px;
+    width: 80px;
+    transform: translate(100px, 60px);
+    border-radius: 50%;
+    position: absolute;
+    background-color: rgba(207, 211, 0, 0.22);
+}
+
+/* Decals */
+
+.info-panel::after {
+    content: "\A";
+    border-style: solid;
+    border-width: 10px 18px 10px 0;
+    transform: rotate(90deg) scale(3.2) translate(45px, 70px);
+    border-color: transparent rgba(255, 0, 184, 0.27) transparent transparent;
+    position: absolute;
+}
+
+.info-panel {
+    padding:30px;
+    height: 250px;
+    width: 600px;
+    background: #FFFFFF;
+    border: 2px solid #0047FF;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 10px 6px rgba(0, 148, 255, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info-panel .title{
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.info-panel .amount{
+    font-size: 60px;
+}
+
+.info-panel .timer{
+    font-size: 30px;
+    font-weight: 400;
+}
+
+ul.transaction-list {
+    list-style-type: none;
+    width: 600px;
+    height: fit-content;
+    margin: 40px;
+    padding: 0;
+}
+
+li.transaction {
+    font-size: 18px;
+    margin-top: 15px;
+    padding: 6px 15px;
+    background-color: #fff;
+    border: #000 2px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFFFFF;
+    border: 2px solid #A300B1;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px 3px rgba(189, 0, 255, 0.25);
+}
+
+li.transaction:nth-child(3n) {
+    background: #FFFFFF;
+    border: 2px solid #0bfd40;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px 3px rgba(0, 255, 71, 0.25);
+}
+
+li.transaction:nth-child(2n) {
+    background: #FFFFFF;
+    border: 2px solid #FFB800;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px 3px rgba(255, 230, 0, 0.25);
+}
+
+li.transaction:nth-child(4n) {
+    background: #FFFFFF;
+    border: 2px solid #00d3e2;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px 3px rgba(0, 109, 182, 0.25);
+}
+
+li.transaction:nth-child(5n) {
+    background: #FFFFFF;
+    border: 2px solid #FF0000;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px 3px rgba(255, 92, 0, 0.25);
+}
+
+.transaction .address {
+    text-decoration: underline;
+}
+
+.transaction .amount {
+    border: #000 2px solid;
+    padding:4px;
+}
+
+.transaction .timestamp {}
