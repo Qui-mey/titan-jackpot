@@ -27,7 +27,7 @@ button {
 }
 
 button#connection-indicator {
-    font-weight: normal;
+    /* font-weight: normal; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,7 +85,7 @@ status.connected {
 }
 
 .info-panel {
-    padding:30px;
+    padding: 30px;
     height: 250px;
     width: 600px;
     background: #FFFFFF;
@@ -101,18 +101,25 @@ status.connected {
     justify-content: space-between;
 }
 
-.info-panel .title{
+.info-panel .title {
     font-size: 28px;
     font-weight: 400;
 }
 
-.info-panel .amount{
+.info-panel .amount {
     font-size: 60px;
 }
 
-.info-panel .timer{
+.info-panel .timer {
     font-size: 30px;
     font-weight: 400;
+}
+
+.info-panel button.purchase-tickets {
+    display: none;
+    position: absolute;
+    transform: translate(-180%, 150%);
+    font-size: 25px;
 }
 
 ul.transaction-list {
@@ -172,7 +179,50 @@ li.transaction:nth-child(5n) {
 
 .transaction .amount {
     border: #000 2px solid;
-    padding:4px;
+    padding: 4px;
 }
 
 .transaction .timestamp {}
+
+.mascot {
+    position: absolute;
+    position: fixed;
+    right: 50px;
+    bottom: -10px;
+    height: 140px;
+    width: 100px;
+    background-image: url(../images/alpaca.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+@keyframes bounce {
+    from, to {
+        transform: translateY(-30px);
+    }
+}
+
+.mascot:active {
+    animation: bounce 3.3s;
+}
+
+@media only screen and (max-width: 650px) {
+    .info-panel {
+        width: 100%;
+    }
+    .info-panel .title {
+        font-size: 18px;
+    }
+    .info-panel .timer {
+        font-size: 25px;
+    }
+    .info-panel::after {
+        display: none;
+    }
+    ul.transaction-list {
+        width: 100%;
+    }
+    .mascot {
+        display: none;
+    }
+}
