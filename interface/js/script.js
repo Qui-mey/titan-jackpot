@@ -1,6 +1,7 @@
 // Website response messages
 const Messages = {
     faucet_error: "We could not reach the API 😪",
+    faucet_fetching: "Processing...",
     unconnected_web3: "Connect MetaMask",
     connected_web3: "",
     no_support_web3: "You have to install MetaMask !"
@@ -9,7 +10,7 @@ const Messages = {
 // Temp settings
 const Settings = {
     //eth_provider: "https://pcinic-api.glitch.me",
-    eth_provider:"https://titan-faucet.herokuapp.com",
+    eth_provider: "https://titan-faucet.herokuapp.com",
     account_provider: "https://ipfs.3box.io"
 }
 
@@ -31,17 +32,21 @@ else {
 
 // ETH Test API (pcinic-api.glitch.me)
 // fortunately it is no longer a opaque request
-async function GetEth() {
-    document.getElementById("status").innerText = "Processing...";
-    let address = document.getElementById("address").value;
-    let res = await fetch(`${Settings.eth_provider}/request/${address}`)
-        .then(async function (resp) {
-            resp.message = await resp.json().then(m => m.message);
-            return resp;
-        }).catch(err => {
-            console.log(`error: ${err}`);
-        });
-    document.getElementById("status").innerText = res ? res.message : Messages.faucet_error;
+async function GetFaucetEth() {
+    let _statusElement = document.getElementById("status");
+    _statusElement.innerText = Messages.faucet_fetching;
+
+    await web3.eth.getAccounts(async function (err, accounts) {
+        if (accounts[0]) {
+            await fetch(`${Settings.eth_provider}/request/${accounts[0]}`)
+                .then(async function (resp) {
+                    _statusElement.innerText = await resp.json().then(m => m.message);
+                }).catch(err => {
+                    console.log(`error: ${err}`);
+                    _statusElement.innerText = Messages.faucet_error;
+                });
+        }
+    });
 }
 
 // Enables Metamask to make a conncetion with web3
@@ -53,12 +58,13 @@ async function EnableEthereum() {
             element.innerHTML = `<status></status>` + Messages.unconnected_web3;
         } else {
             element.innerHTML = `<status class="connected"></status>` + address.formatAddress(6, 38);
+            element.title = address;
         }
     }
 
     web3.eth.getAccounts(async function (err, accounts) {
         if (accounts.length > 0) {
-            document.getElementById("address").value = accounts[0];
+            // document.getElementById("address").value = accounts[0];
             SetConnectionStatus(accounts[0]);
             // 3box test
             console.log(await Get3boxAccountFromAdress(accounts[0]));
@@ -69,7 +75,7 @@ async function EnableEthereum() {
                     console.log("Dapp Allowed");
                     let accounts = await web3.eth.getAccounts();
                     SetConnectionStatus(accounts[0]);
-                    document.getElementById("address").value = accounts[0];
+                    // document.getElementById("address").value = accounts[0];
                 });
             } catch (e) {
                 // User has denied account access to DApp...
