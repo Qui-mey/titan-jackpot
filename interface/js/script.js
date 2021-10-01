@@ -10,7 +10,7 @@ const Messages = {
 // Temp settings
 const Settings = {
     //eth_provider: "https://pcinic-api.glitch.me",
-    eth_provider: "https://titan-faucet.herokuapp.com",
+    eth_provider: "https://alpaca-faucet.herokuapp.com",
     account_provider: "https://ipfs.3box.io"
 }
 
