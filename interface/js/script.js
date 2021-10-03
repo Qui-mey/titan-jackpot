@@ -20,7 +20,7 @@ const Settings = {
 
 var web3 = new Web3();
 
-window.addEventListener("load", function () {
+window.addEventListener("load", async function () {
     // Stup And Check for Web3 Compatibility
     if (window.ethereum) {
         web3 = new Web3(window.ethereum);
@@ -36,6 +36,21 @@ window.addEventListener("load", function () {
     }
 
     InsertTransactions()
+    let lotteryContract = new web3.eth.Contract(
+        Spender_abi,
+        Settings.lottery_contract
+    );
+
+    let lottery_title = await lotteryContract.methods.title().call();
+    let lottery_funds = await lotteryContract.methods.currentFunds().call();
+
+    console.log("lottery_title:", lottery_title);
+    console.log("lottery_end_time:", await lotteryContract.methods.endTime().call());
+    console.log("lottery_funds:",lottery_funds);
+    console.log("lottery_num_entries:",await lotteryContract.methods.numberOfEntries().call());
+
+    document.querySelector(".info-panel>.title").innerHTML = lottery_title;
+    document.querySelector(".info-panel>.amount").innerHTML = web3.utils.fromWei(lottery_funds);
 });
 
 // ETH Test API (pcinic-api.glitch.me)
@@ -63,22 +78,8 @@ async function SetConnectionStatus(address = null) {
     let element = document.getElementById("connection-indicator");
     if (!address) {
         element.innerHTML = `<status></status>` + Messages.unconnected_web3;
-        let result = await GetLotteryTransactions();
-        console.log(result);
 
-        document.getElementById("transaction-placeholder").remove();
-        result.result.reverse().forEach(function (transaction) {
-            if (transaction.to.toLocaleLowerCase() === Settings.lottery_contract.toLocaleLowerCase()) {
-                let html = ` <li class="transaction">
-                <a href="https://rinkeby.etherscan.io/tx/${transaction.hash}" target="_blank">
-                    <div class="address">${transaction.from.formatAddress(20, 45)}</div>
-                </a>
-                <div class="amount">+${web3.utils.fromWei(transaction.value)}</div>
-                <div class="timestamp">${GetTimeFormattedString(parseInt(transaction.timeStamp))}</div>
-            </li>`;
-                document.getElementById("transaction-list").insertAdjacentHTML("beforeend", html);
-            }
-        });
+
     } else {
         element.innerHTML = `<status class="connected"></status>` + address.formatAddress(6, 38);
         element.title = address;
