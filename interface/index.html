@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Koios Community Lottery</title>
-    <link rel="shortcut icon" type="image/png" href="images/alpaca.png" />
+    <title>Community Lottery</title>
+    <link rel="shortcut icon" type="image/png" href="images/alpaca.png?" />
 
 
-    <link rel="stylesheet" href="style/main.css">
-    <script type="text/javascript" src="js/web3.min.js"></script>
+    <link rel="stylesheet" href="style/main.css?v=1">
+    <script type="text/javascript" src="js/web3.min.js?"></script>
 </head>
 
 <body>
@@ -22,8 +22,7 @@
     </div>
 
     <div>
-        <label id="status">Press button</label><br>
-        <!-- <input id="address"></input> -->
+        <label id="status"></label><br>
         <button onclick="GetFaucetEth()">Get Stuff</button>
     </div>
     <div class="main-container">
@@ -37,67 +36,49 @@
         </div>
 
         <!-- Test Data -->
-        <ul class="transaction-list">
+        <ul id="transaction-list" class="transaction-list">
             Transactions:
-            <li class="transaction">
-                <div class="address">0x32sa874h02nsgt24...</div>
-                <div class="amount">+0.3</div>
-                <div class="timestamp">28-9 18:39</div>
-            </li>
-            <li class="transaction">
-                <div class="address">0x32sa874h02nsgt24...</div>
-                <div class="amount">+20</div>
-                <div class="timestamp">28-9 18:39</div>
-            </li>
-            <li class="transaction">
-                <div class="address">0x32sa874h02nsgt24...</div>
-                <div class="amount">+5</div>
-                <div class="timestamp">28-9 18:39</div>
-            </li>
-            <li class="transaction">
-                <div class="address">0x32sa874h02nsgt24...</div>
-                <div class="amount">+1.7</div>
-                <div class="timestamp">28-9 18:39</div>
-            </li>
-            <li class="transaction">
-                <div class="address">0x32sa874h02nsgt24...</div>
-                <div class="amount">+100</div>
-                <div class="timestamp">28-9 18:39</div>
-            </li>
-            <li class="transaction">
-                <div class="address">0x32sa874h02nsgt24...</div>
-                <div class="amount">+100</div>
-                <div class="timestamp">28-9 18:39</div>
-            </li>
-            <li class="transaction">
-                <div class="address">0x32sa874h02nsgt24...</div>
-                <div class="amount">+100</div>
-                <div class="timestamp">28-9 18:39</div>
-            </li>
-            <li class="transaction">
-                <div class="address">0x32sa874h02nsgt24...</div>
-                <div class="amount">+100</div>
-                <div class="timestamp">28-9 18:39</div>
-            </li>
-            <li class="transaction">
-                <div class="address">0x32sa874h02nsgt24...</div>
-                <div class="amount">+100</div>
-                <div class="timestamp">28-9 18:39</div>
-            </li>
-            <li class="transaction">
-                <div class="address">0x32sa874h02nsgt24...</div>
-                <div class="amount">+100</div>
-                <div class="timestamp">28-9 18:39</div>
-            </li>
-            <li class="transaction">
-                <div class="address">0x32sa874h02nsgt24...</div>
-                <div class="amount">+100</div>
-                <div class="timestamp">28-9 18:39</div>
-            </li>
+            <div id="transaction-placeholder">
+                <li class="transaction dummy">
+                    <div class="address">0000000000000000000000</div>
+                    <div class="amount">000</div>
+                    <div class="timestamp">00000000000</div>
+                </li>
+                <li class="transaction dummy">
+                    <div class="address">0000000000000000000000</div>
+                    <div class="amount">000</div>
+                    <div class="timestamp">00000000000</div>
+                </li>
+                <li class="transaction dummy">
+                    <div class="address">0000000000000000000000</div>
+                    <div class="amount">000</div>
+                    <div class="timestamp">00000000000</div>
+                </li>
+                <li class="transaction dummy">
+                    <div class="address">0000000000000000000000</div>
+                    <div class="amount">000</div>
+                    <div class="timestamp">00000000000</div>
+                </li>
+                <li class="transaction dummy">
+                    <div class="address">0000000000000000000000</div>
+                    <div class="amount">000</div>
+                    <div class="timestamp">00000000000</div>
+                </li>
+                <li class="transaction dummy">
+                    <div class="address">0000000000000000000000</div>
+                    <div class="amount">000</div>
+                    <div class="timestamp">00000000000</div>
+                </li>
+                <li class="transaction dummy">
+                    <div class="address">0000000000000000000000</div>
+                    <div class="amount">000</div>
+                    <div class="timestamp">00000000000</div>
+                </li>
+              </div>
         </ul>
     </div>
 
-    <div class="mascot">
+    <div class="mascot" title="Made by aplpaca lovers ❤">
     </div>
 </body>
 <script type="text/javascript" src="js/script.js"></script>
