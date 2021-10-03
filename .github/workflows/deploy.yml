@@ -27,5 +27,5 @@ jobs:
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
         local-dir: ./interface/
-        server-dir: ./titan/
+        server-dir: ./public_html/titan/
         dry-run: true
