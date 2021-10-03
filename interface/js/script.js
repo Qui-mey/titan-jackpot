@@ -87,10 +87,10 @@ async function SetConnectionStatus(address = null) {
             Token_abi,
             Settings.token_contract
         );
-        console.log(await contractInstance.methods.name().call());
-        console.log(web3.utils.fromWei(await (contractInstance.methods.balanceOf(address).call())));
-        console.log(await contractInstance.methods.allowance(address, Settings.lottery_contract).call());
-        //console.log(await contractInstance.methods.approve(Settings.lottery_contract, 100e18).send({from:address}));
+        console.log("token_name:", await contractInstance.methods.name().call());
+        console.log("local_ballance:",web3.utils.fromWei(await (contractInstance.methods.balanceOf(address).call())));
+        console.log("contract_allowance:", await contractInstance.methods.allowance(address, Settings.lottery_contract).call());
+        //console.log(await contractInstance.methods.approve(Settings.lottery_contract, 7e18).send({from:address}));
         
 
         let lotteryContract = new web3.eth.Contract(
@@ -98,10 +98,16 @@ async function SetConnectionStatus(address = null) {
             Settings.lottery_contract
         );
 
-        console.log(await lotteryContract.methods.title().call());
-        console.log(await lotteryContract.methods.endTime().call());
-        console.log(await lotteryContract.methods.currentFunds().call());
-        console.log(await lotteryContract.methods.numberOfEntries().call());
+        let lottery_title = await lotteryContract.methods.title().call();
+        let lottery_funds = await lotteryContract.methods.currentFunds().call();
+
+        console.log("lottery_title:", lottery_title);
+        console.log("lottery_end_time:", await lotteryContract.methods.endTime().call());
+        console.log("lottery_funds:",lottery_funds);
+        console.log("lottery_num_entries:",await lotteryContract.methods.numberOfEntries().call());
+
+        document.querySelector(".info-panel>.title").innerHTML = lottery_title;
+        document.querySelector(".info-panel>.amount").innerHTML = web3.utils.fromWei(lottery_funds);
     }
 }
 
