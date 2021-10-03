@@ -133,7 +133,7 @@ async function InsertTransactions() {
     result.result.reverse().forEach(function (transaction) {
         if (transaction.to.toLocaleLowerCase() === Settings.lottery_contract.toLocaleLowerCase()) {
             let html = ` <li class="transaction">
-            <a href="https://rinkeby.etherscan.io/tx/${transaction.hash}" target="_blank">
+            <a href="https://rinkeby.etherscan.io/tx/${transaction.hash}" rel="noopener target="_blank">
                 <div class="address">${transaction.from.formatAddress(20, 45)}</div>
             </a>
             <div class="amount">+${web3.utils.fromWei(transaction.value)}</div>
