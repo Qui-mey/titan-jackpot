@@ -36,21 +36,6 @@ window.addEventListener("load", async function () {
     }
 
     InsertTransactions()
-    let lotteryContract = new web3.eth.Contract(
-        Spender_abi,
-        Settings.lottery_contract
-    );
-
-    let lottery_title = await lotteryContract.methods.title().call();
-    let lottery_funds = await lotteryContract.methods.currentFunds().call();
-
-    console.log("lottery_title:", lottery_title);
-    console.log("lottery_end_time:", await lotteryContract.methods.endTime().call());
-    console.log("lottery_funds:",lottery_funds);
-    console.log("lottery_num_entries:",await lotteryContract.methods.numberOfEntries().call());
-
-    document.querySelector(".info-panel>.title").innerHTML = lottery_title;
-    document.querySelector(".info-panel>.amount").innerHTML = web3.utils.fromWei(lottery_funds);
 });
 
 // ETH Test API (pcinic-api.glitch.me)
