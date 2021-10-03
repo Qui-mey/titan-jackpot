@@ -29,11 +29,12 @@ window.addEventListener("load", async function () {
     // Legacy DApp Browsers
     else if (window.web3) {
         web3 = new Web3(web3.currentProvider);
-        EnableEthereum();
+        SetContractInfo();
     }
     // Non-DApp Browsers
     else {
         alert(Messages.no_support_web3);
+        SetContractInfo();
     }
 
     InsertTransactions()
@@ -96,7 +97,8 @@ async function SetConnectionStatus(address = null) {
 
         document.querySelector(".info-panel>.title").innerHTML = lottery_title;
         document.querySelector(".info-panel>.amount").innerHTML = web3.utils.fromWei(lottery_funds);
-        ActivateCountdownTimer(lottery_end_time);
+        await ActivateCountdownTimer(lottery_end_time);
+        document.querySelector(".info-panel").classList.remove("skeleton");
     }
 }
 
@@ -126,7 +128,6 @@ async function EnableEthereum() {
 
 async function InsertTransactions() {
     let result = await GetLotteryTransactions();
-    console.log(result);
 
     document.getElementById("transaction-placeholder").remove();
     result.result.reverse().forEach(function (transaction) {
@@ -143,9 +144,25 @@ async function InsertTransactions() {
     });
 }
 
+async function SetContractInfo() {
+    let result = await fetch(`${Settings.service_provider}/contract`)
+        .then(function (res) {
+            return res.json();
+        })
+        .catch(function (err) {
+            console.log(`error: ${err}`);
+        });
+
+    console.log(result)
+    document.querySelector(".info-panel>.title").innerHTML = result.lottery_title;
+    document.querySelector(".info-panel>.amount").innerHTML = web3.utils.fromWei(result.lottery_funds);
+    await ActivateCountdownTimer(result.lottery_end_time);
+    document.querySelector(".info-panel").classList.remove("skeleton");
+}
+
 async function ActivateCountdownTimer(timestamp) {
     let pad = (n, s = 2) => (`${new Array(s).fill(0)}${n}`).slice(-s);
-    let x = setInterval(function () {
+    function _calculateString(){
         let now = new Date().getTime();
         let difference = (timestamp * 1000) - now;
 
@@ -158,16 +175,18 @@ async function ActivateCountdownTimer(timestamp) {
 
         if (difference < 0) {
             clearInterval(x);
-            document.querySelector(".info-panel>.timer").innerHTML = "EXPIRED";
+            document.querySelector(".info-panel>.timer").innerHTML = "Awaiting draw...";
         }
-    }, 1000);
+    }
+    let x = setInterval(_calculateString, 1000);
+    _calculateString();
 }
 
 async function Get3boxAccountFromAdress(address) {
     return await fetch(`${Settings.account_provider}/profile?address=${address}`)
-        .then(async function (res) {
+        .then(function (res) {
             return res.json();
-        }).catch(err => {
+        }).catch(function (err) {
             console.log(`error: ${err}`);
         });
 }
