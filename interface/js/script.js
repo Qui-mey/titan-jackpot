@@ -29,6 +29,7 @@ window.addEventListener("load", async function () {
     // Legacy DApp Browsers
     else if (window.web3) {
         web3 = new Web3(web3.currentProvider);
+        EnableEthereum();
     }
     // Non-DApp Browsers
     else {
@@ -74,10 +75,10 @@ async function SetConnectionStatus(address = null) {
             Settings.token_contract
         );
         console.log("token_name:", await contractInstance.methods.name().call());
-        console.log("local_ballance:",web3.utils.fromWei(await (contractInstance.methods.balanceOf(address).call())));
+        console.log("local_ballance:", web3.utils.fromWei(await (contractInstance.methods.balanceOf(address).call())));
         console.log("contract_allowance:", await contractInstance.methods.allowance(address, Settings.lottery_contract).call());
         //console.log(await contractInstance.methods.approve(Settings.lottery_contract, 7e18).send({from:address}));
-        
+
 
         let lotteryContract = new web3.eth.Contract(
             Spender_abi,
@@ -86,14 +87,16 @@ async function SetConnectionStatus(address = null) {
 
         let lottery_title = await lotteryContract.methods.title().call();
         let lottery_funds = await lotteryContract.methods.currentFunds().call();
+        let lottery_end_time = await lotteryContract.methods.endTime().call();
 
         console.log("lottery_title:", lottery_title);
-        console.log("lottery_end_time:", await lotteryContract.methods.endTime().call());
-        console.log("lottery_funds:",lottery_funds);
-        console.log("lottery_num_entries:",await lotteryContract.methods.numberOfEntries().call());
+        console.log("lottery_end_time:", lottery_end_time);
+        console.log("lottery_funds:", lottery_funds);
+        console.log("lottery_num_entries:", await lotteryContract.methods.numberOfEntries().call());
 
         document.querySelector(".info-panel>.title").innerHTML = lottery_title;
         document.querySelector(".info-panel>.amount").innerHTML = web3.utils.fromWei(lottery_funds);
+        ActivateCountdownTimer(lottery_end_time);
     }
 }
 
@@ -140,6 +143,26 @@ async function InsertTransactions() {
     });
 }
 
+async function ActivateCountdownTimer(timestamp) {
+    let pad = (n, s = 2) => (`${new Array(s).fill(0)}${n}`).slice(-s);
+    let x = setInterval(function () {
+        let now = new Date().getTime();
+        let difference = (timestamp * 1000) - now;
+
+        let days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.querySelector(".info-panel>.timer").innerHTML = `${days} days   ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`
+
+        if (difference < 0) {
+            clearInterval(x);
+            document.querySelector(".info-panel>.timer").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+}
+
 async function Get3boxAccountFromAdress(address) {
     return await fetch(`${Settings.account_provider}/profile?address=${address}`)
         .then(async function (res) {
@@ -166,6 +189,9 @@ function GetTimeFormattedString(timestamp) {
 String.prototype.formatAddress = function (i0, i1) {
     return this.substring(0, i0) + `...` + this.substring(i1);
 }
+
+
+
 
 
 let Token_abi = [
