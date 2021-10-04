@@ -216,7 +216,7 @@ document.querySelector(".mascot-icon").addEventListener("click", function (e) {
     booster.style.display = "block";
     element.animate([
         { transform: 'translateY(0px) rotate(90deg)' },
-        { transform: 'translate(0px, -101vh) rotate(90deg)' }
+        { transform: 'translate(0px, -105vh) rotate(90deg)' }
     ], {
         duration: 1000,
         iterations: 1,
@@ -234,6 +234,11 @@ document.querySelector(".mascot-icon").addEventListener("click", function (e) {
         duration: 500,
         iterations: Infinity
     });
+
+    setTimeout(function(){
+        element.remove();
+        booster.remove();
+    }, 1200);
 });
 
 
