@@ -334,36 +334,25 @@ li.transaction:nth-child(5n) {
     bottom: -10px;
     height: 140px;
     width: 100px;
-    background-image: url(../img/alpaca.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer;
 
     -webkit-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
     -ms-user-select: none;
         user-select: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-@-webkit-keyframes bounce {
-    from, to {
-        -webkit-transform: translateY(-30px);
-                transform: translateY(-30px);
-    }
+.mascot .mascot-icon{
+    height:100%;
+    width:100%;
 }
 
-@keyframes bounce {
-    from, to {
-        -webkit-transform: translateY(-30px);
-                transform: translateY(-30px);
-    }
-}
-
-.mascot:active {
-    background-color: rgba(0,0,0,0);
-    -webkit-animation: bounce 3.3s;
-            animation: bounce 3.3s;
+.booster {
+    display: none;
 }
 
 @media only screen and (max-width: 650px) {
