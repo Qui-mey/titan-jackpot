@@ -20,6 +20,10 @@ contract CommunityLottery {
     
     mapping(address => Transaction[]) public transactions; 
     
+    event InitLottery(string title, uint endTime, address indexed sender);
+    event NewTransaction(address indexed sender, uint amount, uint timeStamp);
+    event EndLottery(address indexed sender, uint amount);
+    
     modifier onlyOwner {
 		require(owner == msg.sender, "You are not the owner!");
 		_;
@@ -33,25 +37,36 @@ contract CommunityLottery {
     function InitializeLottery(string memory _title , uint _endTime) public onlyOwner {
         require(bytes(_title).length > 0, "Title cannot be empty");
 		require(_endTime > block.timestamp, "Endtime should be later than current time");
+		
         title = _title;
         endTime = _endTime;
         currentFunds = 0;
+        
+        emit InitLottery(_title,_endTime, msg.sender);
     }
     
 	function AddTransaction(uint _amount) public {
 		bool sent = token.transferFrom(msg.sender, address(this), _amount);
         require(sent, "Token transfer failed");
+        
 		numberOfEntries++;
 		currentFunds += _amount;
-		Transaction memory transaction = Transaction(msg.sender, 2, block.timestamp); 
+		
+		Transaction memory transaction = Transaction(msg.sender, _amount, block.timestamp); 
 		transactions[msg.sender].push(transaction);
+		
+		emit NewTransaction(msg.sender, _amount, block.timestamp);
 	}
 	
     function refund() public onlyOwner{
-        bool sent =  token.transfer(msg.sender, token.balanceOf(address(this)));
+        uint _balance = token.balanceOf(address(this));
+        bool sent =  token.transfer(msg.sender, _balance);
         require(sent, "Token transfer failed");
+        
         currentFunds = 0;
         numberOfEntries = 0;
+        
+        emit EndLottery(msg.sender, _balance);
     }
 	
 	function DestroySmartContract() public onlyOwner{
