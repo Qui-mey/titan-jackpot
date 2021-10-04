@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 html {
     font-family: 'Roboto Mono', monospace;
 }
@@ -161,21 +168,12 @@ status.connected {
     color: rgba(255, 255, 255, 0);
     border-color: rgba(255, 255, 255, 0);
     cursor: progress;
-    background:rgb(240, 240, 240) -webkit-gradient(linear,left top, right top,from(rgba(0,0,0,0.0)), color-stop(rgb(250, 250, 250)), to(rgba(0,0,0,0.0)));
     background:rgb(240, 240, 240) -o-linear-gradient(left,rgba(0,0,0,0.0), rgb(250, 250, 250), rgba(0,0,0,0.0));
+    background:rgb(240, 240, 240) -webkit-gradient(linear,left top, right top,from(rgba(0,0,0,0.0)), color-stop(rgb(250, 250, 250)), to(rgba(0,0,0,0.0)));
     background:rgb(240, 240, 240) linear-gradient(0.25turn,rgba(0,0,0,0.0), rgb(250, 250, 250), rgba(0,0,0,0.0));
     -webkit-animation: loading 2s infinite;
             animation: loading 2s infinite;
     background-repeat: no-repeat;
-}
-
-.info-panel button.purchase-tickets {
-    display: none;
-    position: absolute;
-    -webkit-transform: translate(-180%, 150%);
-        -ms-transform: translate(-180%, 150%);
-            transform: translate(-180%, 150%);
-    font-size: 25px;
 }
 
 ul.transaction-list {
@@ -186,6 +184,10 @@ ul.transaction-list {
     height: fit-content;
     margin: 40px;
     padding: 0;
+}
+
+ul.transaction-list::before {
+    content: "Transactions: ";
 }
 
 li.transaction {
@@ -212,6 +214,41 @@ li.transaction {
     -webkit-box-shadow: 0px 0px 4px 3px rgba(189, 0, 255, 0.25);
             box-shadow: 0px 0px 4px 3px rgba(189, 0, 255, 0.25);
     overflow: auto;
+}
+
+@-webkit-keyframes inserted {
+    from{
+        -webkit-transform: scale(0.7);
+                transform: scale(0.7);
+    }
+    40%{
+        -webkit-transform: scale(1.05);
+                transform: scale(1.05);
+    }
+    to {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+    }
+}
+
+@keyframes inserted {
+    from{
+        -webkit-transform: scale(0.7);
+                transform: scale(0.7);
+    }
+    40%{
+        -webkit-transform: scale(1.05);
+                transform: scale(1.05);
+    }
+    to {
+        -webkit-transform: scale(1);
+                transform: scale(1);
+    }
+}
+
+li.transaction.inserted {
+    -webkit-animation: inserted 1s;
+            animation: inserted 1s;
 }
 
 li.transaction:nth-child(3n) {
@@ -265,8 +302,8 @@ li.transaction:nth-child(5n) {
     color: rgba(255, 255, 255, 0);
     border-color: rgba(255, 255, 255, 0);
     cursor: progress;
-    background:rgb(240, 240, 240) -webkit-gradient(linear,left top, right top,from(rgba(0,0,0,0.0)), color-stop(rgb(250, 250, 250)), to(rgba(0,0,0,0.0)));
     background:rgb(240, 240, 240) -o-linear-gradient(left,rgba(0,0,0,0.0), rgb(250, 250, 250), rgba(0,0,0,0.0));
+    background:rgb(240, 240, 240) -webkit-gradient(linear,left top, right top,from(rgba(0,0,0,0.0)), color-stop(rgb(250, 250, 250)), to(rgba(0,0,0,0.0)));
     background:rgb(240, 240, 240) linear-gradient(0.25turn,rgba(0,0,0,0.0), rgb(250, 250, 250), rgba(0,0,0,0.0));
     -webkit-animation: loading 2s infinite;
             animation: loading 2s infinite;
@@ -303,10 +340,10 @@ li.transaction:nth-child(5n) {
     cursor: pointer;
 
     -webkit-user-select: none;
-    -khtml-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
-    user-select: none;
+    -ms-user-select: none;
+        user-select: none;
 }
 
 @-webkit-keyframes bounce {
