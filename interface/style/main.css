@@ -297,7 +297,7 @@ li.transaction:nth-child(5n) {
     bottom: -10px;
     height: 140px;
     width: 100px;
-    background-image: url(../images/alpaca.png);
+    background-image: url(../img/alpaca.png);
     background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer;
