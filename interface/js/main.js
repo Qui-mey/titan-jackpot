@@ -29,7 +29,7 @@ window.addEventListener("load", async function () {
     // Legacy DApp Browsers
     else if (window.web3) {
         web3 = new Web3(window.web3.currentProvider);
-        console.log(window.web3.currentProvider);
+        alert(window.web3.currentProvider);
         SetContractInfo();
     }
     // Non-DApp Browsers
@@ -101,6 +101,7 @@ async function SetConnectionStatus(address = null) {
             })
             .on("data", function (event) {
                 console.log(event);
+            }).on("InitLottery", function (event) {
                 console.log(event);
             })
             .on("changed", function (event) { })
