@@ -28,7 +28,8 @@ window.addEventListener("load", async function () {
     }
     // Legacy DApp Browsers
     else if (window.web3) {
-        web3 = new Web3(web3.currentProvider);
+        web3 = new Web3(window.web3.currentProvider);
+        console.log(window.web3.currentProvider);
         SetContractInfo();
     }
     // Non-DApp Browsers
@@ -85,6 +86,26 @@ async function SetConnectionStatus(address = null) {
             Spender_abi,
             Settings.lottery_contract
         );
+
+        lotteryContract.events
+            .allEvents(
+                {
+                    fromBlock: 0
+                },
+                function (error, event) {
+                    console.log(event);
+                }
+            )
+            .on("connected", function (subscriptionId) {
+                console.log("sunscription:", subscriptionId);
+            })
+            .on("data", function (event) {
+                console.log(event);
+                console.log(event);
+            })
+            .on("changed", function (event) { })
+            .on("error", function (error, receipt) { });
+
 
         let lottery_title = await lotteryContract.methods.title().call();
         let lottery_funds = await lotteryContract.methods.currentFunds().call();
@@ -235,7 +256,7 @@ document.querySelector(".mascot-icon").addEventListener("click", function (e) {
         iterations: Infinity
     });
 
-    setTimeout(function(){
+    setTimeout(function () {
         element.remove();
         booster.remove();
     }, 1200);
