@@ -9,6 +9,7 @@ contract CommunityLottery {
     address private owner;
     string public title;
     uint public endTime;
+    uint public startTime;
     uint public currentFunds;
     uint public numberOfEntries;
 
