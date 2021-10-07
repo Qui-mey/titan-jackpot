@@ -426,19 +426,3 @@ li.transaction:nth-child(5n) {
     color: #fff;
     background: rgb(247, 0, 255);
 }
-
-@property --num {
-    syntax: '<integer>';
-    initial-value: 0;
-    inherits: false;
-}
-
-.info-panel .amount {
-    transition: --num 1s;
-    counter-reset: num var(--num);
-    --num: var(--amount);
-}
-
-.info-panel .amount::after {
-    content: counter(num);
-}

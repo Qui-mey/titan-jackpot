@@ -11,7 +11,8 @@
     <meta name="description" content="Smart contract lottery for ERC-20 tokens!">
 
     <meta content="Titan Community Lottery" property="og:title">
-    <meta content="Fun smart contract to demonstrate exchange between titan tokens and explore the possibilities." property="og:description">
+    <meta content="Fun smart contract to demonstrate exchange between titan tokens and explore the possibilities."
+        property="og:description">
     <meta content='./img/alpaca.png' property='og:image'>
 
     <link rel="shortcut icon" type="image/png" href="img/favicon/favicon.ico" />
@@ -19,81 +20,31 @@
     <link rel="manifest" href="site.webmanifest">
 
     <link rel="stylesheet" href="style/fonts.css">
-    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/enter.css">
 </head>
 
 <body>
     <div>
         <button id="connection-container" onclick="EnableEthereum()">
-            <status id="connection-status"></status>  
+            <status id="connection-status"></status>
             <div id="connection-text">Connect MetaMask</div>
         </button>
     </div>
 
-    <div>
-        <br>
-        <!-- <label id="status"></label><br> -->
-        <!-- <button onclick="GetFaucetEth()">Get Stuff</button> -->
-        <button>Buy Tickets</button>
-    </div>
     <div class="main-container">
-        <div class="info-panel skeleton">
-            <div class="title">
-                000000 000000 000000
-            </div>
-            <div class="amount">000</div>
-            <div class="timer">0000000000000000</div>
+        <div class="info-panel">
+            <h3>Buy Tickets</h3>
+            <span>In order to enter the lottery you can buy tickets; each ticket costs 5 titan tokens. You can buy more tokens to increase your chances.</span>
+            <br><h4>Step 1.</h4>
+            <span>There are two steps in order to transfer titan tokens to the lottery contract. The first step is to approve the lottery contract to spend a certain amount of tokens from your address.</span>
+            <br><h4>Step 2.</h4>
+            <span>When you have approved the contract to spend a certain amount of tokens, you can now complete the transfer of your token to the lottery contract.</span>
+            <br><h2><button>-</button><input type="number" value="1"></input><button>+</button> <button>Approve</button></h2>
         </div>
-
-        <!-- Test Data -->
-        <ul id="transaction-list" class="transaction-list">
-            <div id="transaction-placeholder">
-                <li class="transaction skeleton">
-                    <div class="address">0000000000000000000000</div>
-                    <div class="amount">000</div>
-                    <div class="timestamp">00000000000</div>
-                </li>
-                <li class="transaction skeleton">
-                    <div class="address">0000000000000000000000</div>
-                    <div class="amount">000</div>
-                    <div class="timestamp">00000000000</div>
-                </li>
-                <li class="transaction skeleton">
-                    <div class="address">0000000000000000000000</div>
-                    <div class="amount">000</div>
-                    <div class="timestamp">00000000000</div>
-                </li>
-                <li class="transaction skeleton">
-                    <div class="address">0000000000000000000000</div>
-                    <div class="amount">000</div>
-                    <div class="timestamp">00000000000</div>
-                </li>
-                <li class="transaction skeleton">
-                    <div class="address">0000000000000000000000</div>
-                    <div class="amount">000</div>
-                    <div class="timestamp">00000000000</div>
-                </li>
-                <li class="transaction skeleton">
-                    <div class="address">0000000000000000000000</div>
-                    <div class="amount">000</div>
-                    <div class="timestamp">00000000000</div>
-                </li>
-                <li class="transaction skeleton">
-                    <div class="address">0000000000000000000000</div>
-                    <div class="amount">000</div>
-                    <div class="timestamp">00000000000</div>
-                </li>
-            </div>
-        </ul>
-    </div>
-
-    <div class="mascot" title="Made by alpaca lovers ❤">
-        <img alt="alpaca" class="mascot-icon" src="img/alpaca.png">
-        <span class="booster">🔥</span>
     </div>
 </body>
-<!-- <script type="text/javascript" src="js/config.js"></script> -->
+<script type="text/javascript" src="js/config.js"></script>
 <script type="text/javascript" src="js/web3.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/enter.js"></script>
 
 </html>

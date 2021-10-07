@@ -1,0 +1,173 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
+html {
+    font-family: 'Roboto Mono', monospace;
+}
+
+body {
+    margin: 20px;
+    background-color: rgb(245, 220, 242);
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+input {
+    padding: 5px;
+    border-width: 2px;
+    border-color: #000;
+    font-family: 'Roboto Mono', monospace;
+}
+
+button {
+    padding: 5px;
+    border-color: #000;
+    border-style: solid;
+    background-color: #fff;
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+    font-weight: bolder;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+button#connection-container {
+    /* font-weight: normal; */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-transform: none;
+    text-decoration: none;
+}
+
+#connection-status {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: relative;
+    background-color: rgb(255, 148, 184);
+    border: 2px solid #000;
+    margin-right: 5px;
+}
+
+#connection-status.connected {
+    background-color: rgb(148, 255, 148);
+}
+
+.main-container {
+    height:100%;
+    margin-top: 20px;
+    position: relative;
+    width: calc(100%);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-panel {
+    padding: 30px;
+    width: 600px;
+    background: #FFFFFF;
+    border: 2px solid #0047FF;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0px 0px 10px 6px rgba(0, 148, 255, 0.25);
+    box-shadow: 0px 0px 10px 6px rgba(0, 148, 255, 0.25);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    /* -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; */
+    /* -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; */
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    /* align-items: center; */
+    /* -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between; */
+    overflow: auto;
+}
+
+.info-panel .title {
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.info-panel .amount {
+    font-size: 60px;
+}
+
+.info-panel .timer {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.info-panel.skeleton * {
+    color: rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0);
+    cursor: progress;
+    background: rgb(240, 240, 240) -o-linear-gradient(left, rgba(0, 0, 0, 0.0), rgb(250, 250, 250), rgba(0, 0, 0, 0.0));
+    background: rgb(240, 240, 240) -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.0)), color-stop(rgb(250, 250, 250)), to(rgba(0, 0, 0, 0.0)));
+    background: rgb(240, 240, 240) linear-gradient(0.25turn, rgba(0, 0, 0, 0.0), rgb(250, 250, 250), rgba(0, 0, 0, 0.0));
+    -webkit-animation: loading 2s infinite;
+    animation: loading 2s infinite;
+    background-repeat: no-repeat;
+}
+
+
+@media only screen and (max-width: 650px) {
+    .info-panel {
+        width: 100%;
+    }
+    .info-panel .title {
+        font-size: 18px;
+    }
+    .info-panel .timer {
+        font-size: 25px;
+    }
+}
+
+::-moz-selection {
+    color: #fff;
+    background: rgb(247, 0, 255);
+}
+
+::selection {
+    color: #fff;
+    background: rgb(247, 0, 255);
+}
